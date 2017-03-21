@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.bg{
+			background: yellow;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="demo"></div>
+	<script>
+		let obj={
+			message:'kang',
+		}
+		var vm=new Vue({
+			el:'#demo',
+			data:obj,
+			render(createEle){   //render函数会被自动调用,createElement里生成想要的标签
+				return createEle(    //调用函数,把结构return出来
+					'ul',   //渲染一个ul
+					{
+						class:{
+							bg:true
+						},
+						style:{
+							fontSize:'50px'
+						},
+						attr:{   //自定义属性
+							abc:'kelas'
+						},
+						domProps:{     //改变元素的结构，下面创建的标签就被替换了，一般用在组件中
+							innerHTML:'<li>我是html</li>'
+						},
+					},
+					[   //子元素
+						createEle('li','nihao'),
+						createEle('li',2),
+						createEle('li',3),
+					]  //后面不能加逗号和分号
+				);
+			},
+		});
+	</script>
+</body>
+</html>

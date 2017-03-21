@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+			font-weight: bold;
+		}
+		.bg{
+			background: yellow;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="demo">
+		<button @click='addClass=!addClass'>按钮</button>
+		<span class="bg" :class='{red:addClass}'>Vicki</span>   <!-- 绑定的class是个对象 -->
+		<span class="bg" :class='{red:addClass}'>nomal</span>
+	</div>
+	<script>
+		let obj={
+			addClass: true,
+		}
+		var vm=new Vue({
+			el:'#demo',
+			data:obj,
+		});
+	</script>
+</body>
+</html>

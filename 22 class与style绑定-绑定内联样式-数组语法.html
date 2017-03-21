@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app">
+		<p v-bind:style="[styleObject1,styleObject2]">Hello</p>
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				styleObject1:{
+					color:'blue',
+					fontSize:'30px'
+				},
+				styleObject2:{
+					backgroundColor:'yellow'
+				},
+			}
+		});
+		/*渲染为：<p style="color: blue; font-size: 30px; background-color: yellow;">Hello</p>*/
+	</script>
+</body>
+</html>

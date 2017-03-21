@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<script src='vue.js'></script>
+</head>
+	<div id="app">
+		<!-- 想把custom-select包在table里？ -->
+		<div style='float: left;'>
+			<h2>自定义的下拉框</h2>
+			<!-- <table>  浏览器容错，会把custom-select放到table外面
+				<custom-select btn-value='查询'></custom-select>
+			</table> -->
+			<!-- 遇到受限制元素的解决办法 -->
+			<table><tr is='custom-select'></tr></table>
+		</div>
+
+	</div>
+
+	<script>
+		/*var obj={
+			selectShow:false,
+		};*/
+		//注册组件     
+		//全局注册
+		Vue.component('custom-select',{    //Vue.component注意大小写
+			/*data:{
+				selectShow:false,  
+			},*///写成函数的形式，要写成一个对象，所有组件都公用该对象，一个组件发生变化会影响其他组件
+			data:function(){
+				// return obj;  //错误的写法，公用同一个对象
+				return {
+					selectShow:false,  //return 自己的对象
+				};
+			},
+			props:['btnValue'], //注意这里一定要驼峰的方式！
+			template:`   
+				<section class="warp">
+					<div class="searchIpt clearFix">
+						<div class="clearFix">
+							<input type="text" class="keyWord" value="" @click='selectShow=!selectShow' />
+							<input type="button" v-bind:value="btnValue">
+							<span></span>
+						</div>
+						<ul class="list" v-show='selectShow'>
+							<li>html+css</li>
+							<li>html5+css3</li>
+							<li>javascript</li>
+							<li>angular</li>
+							<li>react</li>
+							<li>vue</li>
+							<li>jquery</li>
+							<li>nodejs</li>
+						</ul>
+					</div>
+				</section>
+			`,
+		});
+
+
+		new Vue({
+			el:'#app',
+		});
+		//一个文件里可以多个new Vue()
+
+		/*new Vue({
+			el:'#app1',
+		});*/
+	</script>
+</body>
+</html>

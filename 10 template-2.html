@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<i>下面是模板！原来是world</i>
+	<div id="demo">
+		<span>world</span>
+	</div>
+	<script type='x-template' id='temp'>  //别的html文件没法用，但在一个html文件里可以多次使用
+		<div>
+			<b>Hi,{{message}}！</b>
+			<span>我是模板</span>
+		</div>
+	</script>
+	<script>
+		let obj={
+			message:'kang',
+		}
+		var vm=new Vue({
+			el:'#demo',
+			data:obj,
+			template:'#temp',   //模板直接替换掉挂载元素
+		});
+	</script>
+</body>
+</html>

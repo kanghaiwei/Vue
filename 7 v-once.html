@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-once</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="box">
+		<input type="text" v-model='message'>
+		<p v-once>{{message}}</p>   <!-- 加上v-once，只生效一次 -->
+	</div>
+	<script>
+		let obj={
+			message:'kanghaiwei'
+		}
+		var vm=new Vue({
+			el:'#box',
+			data:obj
+		});
+	</script>
+</body>
+</html>

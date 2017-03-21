@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.yellowBg{
+			background: yellow;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app">
+		<p v-bind:class="[isRed ? redClass : '', bgClass]">Hello</p>
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				isRed:false,
+				redClass:'red',
+				bgClass:'yellowBg'
+			}
+		});
+		/*渲染为：<p class="yellowBg"></p>
+		此例始终添加 bgClass ，但是只有在 isRed 是 true 时添加 redClass*/
+
+	</script>
+</body>
+</html>

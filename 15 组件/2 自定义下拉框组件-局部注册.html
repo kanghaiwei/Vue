@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<script src='vue.js'></script>
+</head>
+<body>
+	<!-- <select name="" id="">
+		<option value="">北京</option>
+		<option value="">上海</option>
+		<option value="">青岛</option>
+		<option value="">石家庄</option>
+	</select> -->
+	<div id="app">
+		<h2>自定义的下拉框</h2>
+		<custom-select></custom-select>
+		<h2>自定义的下拉框2</h2>
+		<custom-select></custom-select>
+	</div>
+	<div id="app1">
+		<h2>自定义的下拉框3</h2>
+		<custom-select></custom-select>
+	</div>
+	<script>
+		
+		new Vue({
+			el:'#app',
+			//局部注册
+			components:{
+				'custom-select':{
+					template:`   
+						<section class="warp">
+							<div class="searchIpt clearFix">
+								<div class="clearFix">
+									<input type="text" class="keyWord" value="" />
+									<input type="button" value="查询">
+									<span></span>
+								</div>
+								<ul class="list">
+									<li>html+css</li>
+									<li>html5+css3</li>
+									<li>javascript</li>
+									<li>angular</li>
+									<li>react</li>
+									<li>vue</li>
+									<li>jquery</li>
+									<li>nodejs</li>
+								</ul>
+							</div>
+						</section>
+					`,
+				}
+			},
+		});
+
+	</script>
+</body>
+</html>

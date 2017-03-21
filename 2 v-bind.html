@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-bind</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app2">
+		<span v-bind:customId='id' v-bind:title='message'>
+			鼠标移入 悬停几秒
+		</span>
+	</div>
+	<script>
+		var app2=new Vue({
+			el:'#app2',
+			data:{
+				message:'加载该页面的时间： '+new Date(),
+				id:'red'
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app">
+		<p v-bind:style="{color:ActiveColor,fontSize:ActiveSize+'px'}">Hello</p>
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				ActiveColor:'red',
+				ActiveSize:20
+			}
+		});
+		/*渲染为：<p style="color: red; font-size: 20px;">Hello</p>*/
+	</script>
+</body>
+</html>

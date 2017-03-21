@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		body{
+			background: #eee;
+		}
+	</style>
+	<script src='vue.js'></script>
+</head>
+	<div id="app">
+		<custom-component :count='count'></custom-component>
+	</div>
+
+	<script>
+	Vue.component('custom-component',{   //参数：自定义组件标签名'custom-component'，自定义组件配置{}
+		props:['count'],   //子组件接收设置
+		data(){   //data必须写成函数的形式
+			return{
+				incrementCount: this.count    //作为局部这个组件的data初始值
+			};
+		},
+		computed:{   //计算属性更改根据data的变化
+			incrementCount2(){
+				return this.incrementCount;
+			},
+		},
+		template:`
+			<div>
+				<h2>我是一个自定义的组件</h2>
+				<button @click='changeCount'>改变count的值</button>
+				{{incrementCount2}}
+			</div>
+		`,
+		methods:{
+			changeCount(){
+				this.incrementCount++;   //不能直接修改父组件传过来的数据
+			},
+		}
+	});
+	new Vue({
+		el:'#app',
+		data:{   //接收外面传过来的参数
+			count:0,
+		},
+	});
+		
+	</script>
+</body>
+</html>
+

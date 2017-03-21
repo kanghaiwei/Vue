@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.yellowBg{
+			background: yellow;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+
+	<div id="app">
+		<p v-bind:class='[redClass,bgClass]'>Hello</p>
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				redClass:'red',
+				bgClass:'yellowBg'
+			}
+		});
+		// 渲染为：<p class="red yellowBg">Hello</p>
+	</script>
+</body>
+</html>

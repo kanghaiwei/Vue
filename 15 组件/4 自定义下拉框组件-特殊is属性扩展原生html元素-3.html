@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<script src='vue.js'></script>
+</head>
+	<div id="app">
+		<!-- 想把custom-select包在table里？ -->
+		<div style='float: left;'>
+			<h2>自定义的下拉框</h2>
+			<custom-select btn-value='搜索'></custom-select>
+		</div>
+
+		<div style='float: left;'>
+			<h2>自定义的下拉框</h2>
+			<custom-select btn-value='查询'></custom-select>
+		</div>
+
+	</div>
+
+	<script>
+
+		Vue.component('custom-select',{
+			data:function(){
+				// return obj;  //错误的写法，公用同一个对象
+				return {
+					selectShow:false,  //return 自己的对象
+				};
+			},
+			props:['btnValue'], //注意这里一定要驼峰的方式！
+			template:`   
+				<section class="warp">
+					<div class="searchIpt clearFix">
+						<div class="clearFix">
+							<input type="text" class="keyWord" value="" @click='selectShow=!selectShow' />
+							<input type="button" v-bind:value="btnValue">
+							<span></span>
+						</div>
+						<custom-list v-show='selectShow'></custom-list>   
+					</div>
+				</section>
+			`,
+		});
+
+		// ul也提取出来做一个组件,这样的话custom-list是子组件，custom-select是父组件
+		Vue.component('custom-list',{
+			template:`
+				<ul class="list">
+					<li>html+css</li>
+					<li>html5+css3</li>
+					<li>javascript</li>
+					<li>angular</li>
+					<li>react</li>
+					<li>vue</li>
+					<li>jquery</li>
+					<li>nodejs</li>
+				</ul>
+			`,
+		});
+		new Vue({
+			el:'#app',
+		});
+
+	</script>
+</body>
+</html>

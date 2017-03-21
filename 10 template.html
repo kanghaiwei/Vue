@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="demo">
+		<span>world</span>
+	</div>
+	<script>
+		let obj={
+			message:'kang',
+		}
+		var str='<b>Hi,{{message}}！<span>qqq</span></b><i>111</i>';  //根节点只能有一个,这里是b标签，b标签不能有兄弟节点，如果有，会报错，并且不被显示出来，只显示第一个兄弟节点
+		// 写成es6的方式可以换行！
+		var str1=`<div>
+					Hi,{{message}}！
+					<span>888</span>
+				</div>`;
+		var vm=new Vue({
+			el:'#demo',
+			data:obj,
+			template:str,  //权重比较高,会替换挂载元素,注意这里是替换，不是放在挂载元素下面
+		});
+	</script>
+</body>
+</html>

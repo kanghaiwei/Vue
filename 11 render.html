@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="demo">{{message}}</div>
+	<script>
+		let obj={
+			message:'kang',
+		}
+		var vm=new Vue({
+			el:'#demo',
+			data:obj,
+			render(createEle){   //render函数会被自动调用,createElement里生成想要的标签,render会替换掉挂载元素
+				return createEle(    //调用函数,把结构return出来
+					'div',   //渲染一个ul
+					[   //子元素
+						createEle('i','nihao'),
+						createEle('b',2),
+						createEle('i',3),
+					]  //这个数组后面不能加逗号和分号
+				);
+			},
+		});
+	</script>
+</body>
+</html>

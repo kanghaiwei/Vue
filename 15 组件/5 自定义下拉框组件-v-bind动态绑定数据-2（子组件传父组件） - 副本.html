@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<script src='vue.js'></script>
+</head>
+	<div id="app">
+		<!-- 想把custom-select包在table里？ -->
+		<div style='float: left;'>
+			<h2>自定义的下拉框</h2>
+			<custom-select btn-value='搜索' v-bind:list='list1'></custom-select>   <!-- list
+是自定义的属性 -->		</div>
+
+		<div style='float: left;'>
+			<h2>自定义的下拉框</h2>
+			<custom-select btn-value='查询' v-bind:list='list2'></custom-select>
+		</div>
+
+	</div>
+
+	<script>
+
+		Vue.component('custom-select',{
+			data:function(){
+				// return obj;  //错误的写法，公用同一个对象
+				return {
+					selectShow:false,  //return 自己的对象
+					val:'',  //输入框里面的值初始化为空
+				};
+			},
+			props:['btnValue','list'], //组件上的自定义属性，注意这里一定要驼峰的方式！
+			template:`   
+				<section class="warp">
+					<div class="searchIpt clearFix">
+						<div class="clearFix">
+							<input type="text" class="keyWord" value="" @click='selectShow=!selectShow' :value='val'/>
+							<input type="button" v-bind:value="btnValue">
+							<span></span>
+						</div>
+						<custom-list v-show='selectShow' v-bind:list='list' v-on:recive='changeValueHandle'></custom-list>   
+					</div>
+				</section>
+			`,
+			methods:{
+				changeValueHandle(value){
+					// alert(value);
+					this.val=value;
+				}
+			},
+		});
+
+		// ul也提取出来做一个组件,这样的话custom-list是子组件，custom-select是父组件
+		Vue.component('custom-list',{
+			props:['list'],  //父组件和子组件都要声明一下
+			template:`
+				<ul class="list">
+					<li v-for='item of list' @click='selectValueHandle(item)'>{{item}}</li>
+				</ul>
+			`,
+			methods:{
+				selectValueHandle(item){
+					//在子组件中有交互
+					//告知父级，改变val的值,需要触发一个自定义事件 
+					//广播
+					this.$emit('recive',item);  
+				}
+			},
+		});
+		let data={
+			list1:['北京','上海','杭州','青岛'],
+			list2:['17-3-1','17-3-2','17-3-3','17-3-4'],
+		};
+		new Vue({
+			el:'#app',
+			data:data,
+		});
+
+	</script>
+</body>
+</html>
+
+
+<!-- <li v-for='item of list'>{{item}}</li> -->
+<!-- 注意这里，是用of,不是in -->

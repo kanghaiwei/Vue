@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.yellowBg{
+			background: yellow;
+		}
+		.active{
+			background: blue;
+			color: #fff;
+		}
+	</style>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app">
+		<my-component v-bind:class="{active:isActive}"></my-component>
+	</div>
+	<script>
+		Vue.component('my-component',{
+			template:'<p class="c1 c2">Hi</p>',
+			
+		});
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				isActive:true
+			}
+		});
+		/*渲染为：<p class="c1 c2 active">Hi</p>*/
+	</script>
+</body>
+</html>

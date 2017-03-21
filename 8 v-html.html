@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-html</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+		<div id="box">
+			<p v-html='aHtml'></p>
+		</div>
+	<script>
+		let obj={
+			aHtml:'<b>1</b><i>hi</i>'
+		} 
+		var vm=new Vue({
+			el:'#box',
+			data:obj,
+		});
+	</script>
+</body>
+</html>

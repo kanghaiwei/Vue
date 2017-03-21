@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app" :custom='abc'>
+		{{1+2}}
+		{{1+1==2?'yes':'no'}}
+		<span>{{html}}</span>    <!-- 输出不被解析的html -->
+		<span v-html='html'></span>   <!-- 输出被解析的html -->
+	</div>
+	<script>
+		let obj={
+			html:'<b>Vicki</b>',
+			abc:1
+		}
+		var app=new Vue({
+			el:'#app',   
+			data:obj,
+		});
+		// {{ 简单的表达式是可以的，不能过多的逻辑处理 }}  把模板逻辑可以写到计算属性里面
+	</script>
+</body>
+</html>

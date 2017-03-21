@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>computed VS methods</title>
+	<script src='js/vue.js'></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{ firstname }}</p>
+		<p>{{ lastname }}</p>
+		<p>{{ fullname }}</p> 
+	</div>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				fullname:'kang vicki',
+				firstname:'kang',
+				lastname:'vicki'
+			},
+			computed:{
+				fullname:{
+					//getter
+					get:function(){
+						return this.firstname+' '+this.lastname;
+					},
+					// setter
+					set: function (newValue) {
+				      	var names = newValue.split(' ');
+				      	this.firstname = names[0];
+				      	this.lastname = names[names.length - 1];
+			   		}
+				}
+				
+			}
+		});
+
+	</script>
+</body>
+</html>
